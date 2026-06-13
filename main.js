@@ -1,10 +1,10 @@
-// Navbar scroll effect
+// Navbar 捲動效果
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
   navbar.classList.toggle('scrolled', window.scrollY > 60);
 });
 
-// Mobile menu
+// 手機選單
 const hamburger = document.getElementById('hamburger');
 const mobileMenu = document.getElementById('mobileMenu');
 hamburger.addEventListener('click', () => {
@@ -18,59 +18,39 @@ mobileMenu.querySelectorAll('a').forEach(a => {
   });
 });
 
-// Scroll-triggered fade-in
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('visible');
-      observer.unobserve(e.target);
-    }
-  });
+// 捲動淡入
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); observer.unobserve(e.target); } });
 }, { threshold: 0.1 });
-
-document.querySelectorAll('.pain-card, .stat-item, .service-card, .course-card, .speaking-topic, .testimonial-card').forEach(el => {
-  el.style.opacity = '0';
-  el.style.transform = 'translateY(24px)';
-  el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+document.querySelectorAll('.pain-card,.service-card,.course-card,.speaking-card,.testi-card,.stat-item').forEach(el => {
+  el.classList.add('fade');
   observer.observe(el);
 });
 
-document.addEventListener('animationend', () => {}, { once: true });
-
-// Make visible on intersection
-const styleSheet = document.createElement('style');
-styleSheet.textContent = `.visible { opacity: 1 !important; transform: translateY(0) !important; }`;
-document.head.appendChild(styleSheet);
-
-// Counter animation for stats
-const counters = document.querySelectorAll('.stat-num');
-const counterObserver = new IntersectionObserver((entries) => {
+// 數字計數動畫
+const numEls = document.querySelectorAll('.stat-num[data-target]');
+const numObs = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (!e.isIntersecting) return;
     const el = e.target;
-    const text = el.textContent;
-    const match = text.match(/[\d,]+/);
-    if (!match) return;
-    const target = parseInt(match[0].replace(/,/g, ''));
-    const suffix = text.replace(/[\d,]+/, '');
-    let current = 0;
+    const target = parseInt(el.dataset.target);
+    let cur = 0;
     const step = target / 60;
-    const timer = setInterval(() => {
-      current = Math.min(current + step, target);
-      el.textContent = Math.floor(current).toLocaleString() + suffix;
-      if (current >= target) clearInterval(timer);
+    const t = setInterval(() => {
+      cur = Math.min(cur + step, target);
+      el.textContent = Math.floor(cur).toLocaleString();
+      if (cur >= target) clearInterval(t);
     }, 16);
-    counterObserver.unobserve(el);
+    numObs.unobserve(el);
   });
 }, { threshold: 0.5 });
+numEls.forEach(el => numObs.observe(el));
 
-counters.forEach(c => counterObserver.observe(c));
-
-// Subscribe form
+// 訂閱表單
 function handleSubscribe(e) {
   e.preventDefault();
   const btn = e.target.querySelector('button');
-  btn.textContent = '訂閱成功！感謝你 🎉';
-  btn.style.background = '#2a7a3a';
+  btn.textContent = '訂閱成功！感謝你';
+  btn.style.background = '#2a6e3a';
   btn.disabled = true;
 }
