@@ -105,12 +105,3 @@ numEls.forEach(el => numObs.observe(el));
 
   cards.forEach(function(c) { c.classList.add('fade'); observer.observe(c); });
 })();
-
-// 訂閱表單
-function handleSubscribe(e) {
-  e.preventDefault();
-  const btn = e.target.querySelector('button');
-  btn.textContent = '訂閱成功！感謝你';
-  btn.style.background = '#2a6e3a';
-  btn.disabled = true;
-}
