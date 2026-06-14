@@ -105,3 +105,45 @@ numEls.forEach(el => numObs.observe(el));
 
   cards.forEach(function(c) { c.classList.add('fade'); observer.observe(c); });
 })();
+
+// 學員見證輪播（翻頁式 + 文字計數器）
+(function() {
+  var track = document.getElementById('testiTrack');
+  if (!track) return;
+  var cards = track.querySelectorAll('.testi-card');
+  var total = cards.length;
+  var page = 0;
+  var autoTimer;
+
+  function perView() {
+    if (window.innerWidth >= 1024) return 3;
+    if (window.innerWidth >= 768) return 2;
+    return 1;
+  }
+
+  function totalPages() { return Math.ceil(total / perView()); }
+
+  function goTo(p) {
+    var pages = totalPages();
+    page = ((p % pages) + pages) % pages;
+    var pv = perView();
+    var offset = page * pv;
+    if (offset > total - pv) offset = total - pv;
+    track.style.transform = 'translateX(-' + (offset * 100 / pv) + '%)';
+    var counter = document.getElementById('testiDots');
+    var start = offset + 1;
+    var end = Math.min(offset + pv, total);
+    if (counter) counter.textContent = '第 ' + start + ' – ' + end + ' 則，共 ' + total + ' 則見證（' + (page + 1) + ' / ' + pages + ' 頁）';
+  }
+
+  function resetAuto() {
+    clearInterval(autoTimer);
+    autoTimer = setInterval(function() { goTo(page + 1); }, 5000);
+  }
+
+  document.getElementById('testiNext').addEventListener('click', function() { goTo(page + 1); resetAuto(); });
+  document.getElementById('testiPrev').addEventListener('click', function() { goTo(page - 1); resetAuto(); });
+  window.addEventListener('resize', function() { goTo(page); });
+  goTo(0);
+  resetAuto();
+})();
