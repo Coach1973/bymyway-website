@@ -18,13 +18,14 @@ mobileMenu.querySelectorAll('a').forEach(a => {
   });
 });
 
-// 捲動淡入
+// 捲動淡入（iframe 內直接顯示，不等 IntersectionObserver）
+var inIframe = (window.self !== window.top);
 const observer = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); observer.unobserve(e.target); } });
-}, { threshold: 0.1 });
+}, { threshold: 0.05, rootMargin: '200px' });
 document.querySelectorAll('.pain-card,.service-card,.course-card,.speaking-card,.testi-card,.stat-item').forEach(el => {
   el.classList.add('fade');
-  observer.observe(el);
+  if (inIframe) { el.classList.add('in'); } else { observer.observe(el); }
 });
 
 // 數字計數動畫
@@ -103,8 +104,22 @@ numEls.forEach(el => numObs.observe(el));
   window.addEventListener('resize', update);
   update();
 
-  cards.forEach(function(c) { c.classList.add('fade'); observer.observe(c); });
+  cards.forEach(function(c) { c.classList.add('fade'); if (inIframe) { c.classList.add('in'); } else { observer.observe(c); } });
 })();
+
+// iframe 內 anchor 連結修正：滾動到正確位置
+if (inIframe) {
+  document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+    a.addEventListener('click', function(e) {
+      var id = this.getAttribute('href').slice(1);
+      var el = document.getElementById(id);
+      if (el) {
+        e.preventDefault();
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+}
 
 // 學員見證輪播（翻頁式 + 文字計數器）
 (function() {

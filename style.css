@@ -152,7 +152,7 @@ section { padding: 100px 0; }
 
 /* ===== HERO ===== */
 .hero {
-  position: relative; min-height: 100vh;
+  position: relative; min-height: min(100vh, 800px);
   display: flex; align-items: center;
   background: var(--dark);
   overflow: hidden;
@@ -631,7 +631,7 @@ section { padding: 100px 0; }
 
 /* ===== LINE FLOAT ===== */
 .line-float {
-  position: fixed; bottom: 28px; right: 28px;
+  position: sticky; bottom: 28px; float: right; margin-right: 28px;
   width: 54px; height: 54px; border-radius: 50%;
   box-shadow: 0 4px 20px rgba(6,199,85,0.4); z-index: 999;
   transition: transform var(--ease), box-shadow var(--ease);
