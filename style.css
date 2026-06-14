@@ -33,9 +33,8 @@ section { padding: 100px 0; }
 
 /* 標籤 */
 .tag {
-  font-size: 12px;
+  font-size: 18px;
   letter-spacing: 3px;
-  text-transform: uppercase;
   color: var(--gold);
   margin-bottom: 14px;
   font-weight: 600;
@@ -113,10 +112,10 @@ section { padding: 100px 0; }
 .logo { display: flex; flex-direction: column; line-height: 1.1; }
 .logo-main {
   font-family: 'Noto Serif TC', serif;
-  font-size: 20px; font-weight: 900;
+  font-size: 26px; font-weight: 900;
   color: var(--gold); letter-spacing: 3px;
 }
-.logo-sub { font-size: 10px; letter-spacing: 2px; color: var(--muted); margin-top: 1px; }
+.logo-sub { font-size: 12px; letter-spacing: 3px; color: var(--muted); margin-top: 2px; }
 
 .nav-links { display: flex; align-items: center; gap: 28px; }
 .nav-links a {
@@ -166,7 +165,7 @@ section { padding: 100px 0; }
     linear-gradient(135deg, #0c0c0c 0%, #141008 50%, #0c0f0c 100%);
 }
 .hero-content { position: relative; z-index: 1; max-width: 680px; padding-top: 70px; }
-.hero-tag { font-size: 12px; letter-spacing: 4px; color: var(--gold); margin-bottom: 22px; text-transform: uppercase; }
+.hero-tag { font-size: 18px; letter-spacing: 4px; color: var(--gold); margin-bottom: 22px; }
 .hero-title {
   font-family: 'Noto Serif TC', serif;
   font-size: clamp(48px, 7vw, 88px);
@@ -224,20 +223,7 @@ section { padding: 100px 0; }
 .about-inner { display: grid; grid-template-columns: 1fr 1.25fr; gap: 72px; align-items: center; }
 .about-photo { position: relative; }
 .about-photo img { width: 100%; border-radius: var(--r); filter: grayscale(15%); }
-.photo-fallback {
-  display: none; width: 100%; aspect-ratio: 4/5;
-  background: var(--dark3); border: 1px solid var(--border);
-  border-radius: var(--r); align-items: center; justify-content: center;
-  font-family: 'Noto Serif TC', serif; font-size: 48px; font-weight: 900;
-  color: var(--gold); text-align: center; line-height: 1.2;
-}
-.photo-badge {
-  position: absolute; bottom: 28px; right: -18px;
-  background: var(--gold); color: #0c0c0c;
-  padding: 14px 18px; border-radius: var(--r);
-  font-weight: 900; font-size: 13px; text-align: center; line-height: 1.4;
-  box-shadow: 0 8px 28px rgba(200,169,110,0.3);
-}
+.photo-fallback { display: none; }
 .about-text h2 {
   font-family: 'Noto Serif TC', serif;
   font-size: clamp(24px, 3vw, 34px); font-weight: 700; line-height: 1.35; margin-bottom: 20px;
@@ -250,7 +236,15 @@ section { padding: 100px 0; }
 }
 .about-text p { color: rgba(226,226,226,0.78); line-height: 1.9; margin-bottom: 14px; font-size: 15px; }
 .identity-tags { display: flex; flex-direction: column; gap: 8px; margin: 22px 0; }
-.identity-tags span { font-size: 14px; color: var(--gold); font-weight: 600; }
+.identity-tags span { font-size: 14px; color: var(--gold); font-weight: 600; display: flex; align-items: center; gap: 10px; }
+.id-icon {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 24px; height: 24px; flex-shrink: 0;
+  background: linear-gradient(135deg, #c8a96e, #a8894e 40%, #dfc48e 60%, #c8a96e);
+  color: #0c0c0c; font-size: 10px; font-weight: 900;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(200,169,110,0.3), inset 0 1px 0 rgba(255,255,255,0.25);
+}
 .about-skills { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 28px; }
 .about-skills span {
   border: 1px solid rgba(200,169,110,0.4); color: var(--gold);
@@ -348,6 +342,7 @@ section { padding: 100px 0; }
 }
 .speaking-card:hover { border-color: rgba(200,169,110,0.3); transform: translateY(-4px); }
 .sp-icon { font-size: 32px; margin-bottom: 14px; }
+.sp-icon .id-icon { width: 32px; height: 32px; font-size: 14px; }
 .speaking-card h3 { font-size: 16px; font-weight: 700; color: var(--gold); margin-bottom: 9px; }
 .speaking-card p { font-size: 13px; color: var(--muted); line-height: 1.7; }
 .speaking-footer {
@@ -479,7 +474,7 @@ section { padding: 100px 0; }
   line-height: 1;
 }
 .card-text {
-  font-size: 15px;
+  font-size: 18px;
   line-height: 1.8;
   color: var(--text);
   flex-grow: 1;
