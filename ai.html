@@ -53,12 +53,15 @@
     background: rgba(12,12,12,0.94);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border);
+    width: 100%;
+    overflow: hidden;
   }
   .nav-inner {
-    max-width: 1300px; margin: 0 auto;
-    padding: 0 32px; height: 84px;
+    max-width: 100%; margin: 0 auto;
+    padding: 0 24px; height: 78px;
     display: flex; align-items: center; justify-content: space-between;
-    gap: 32px;
+    gap: 16px;
+    box-sizing: border-box;
   }
   .logo {
     display: flex; flex-direction: column;
@@ -82,8 +85,10 @@
 
   /* 中間文字選單（仿 bymyway） */
   .nav-menu {
-    display: flex; gap: 36px; align-items: center;
+    display: flex; gap: 22px; align-items: center;
     flex: 1; justify-content: center;
+    min-width: 0;
+    flex-wrap: nowrap;
   }
   .nav-item {
     font-size: 15px;
@@ -125,7 +130,7 @@
   }
 
   /* navbar 占位，避免 fixed 蓋住 Hero */
-  body { padding-top: 84px; }
+  body { padding-top: 78px; }
 
   /* 預設（大桌面 1400px+） */
   /* RWD 階梯 — 從寬到窄漸進壓縮，1280px 筆電必須塞得下 */
@@ -326,9 +331,10 @@
 
   /* ===== HERO ===== */
   .hero {
-    min-height: 100vh;
+    /* 🔴 不用 100vh：iframe 內會被計算成 iframe 高度造成超大空白 */
+    min-height: 560px;
     display: flex; align-items: center; justify-content: center;
-    padding: 120px 24px 80px;
+    padding: 80px 24px 70px;
     background:
       radial-gradient(ellipse at top, rgba(200,169,110,0.08), transparent 60%),
       var(--dark);
