@@ -162,3 +162,38 @@ if (inIframe) {
   goTo(0);
   resetAuto();
 })();
+
+// 最新消息輪播（翻頁式，比照學員見證）
+(function() {
+  var track = document.getElementById('newsTrack');
+  if (!track) return;
+  var cards = track.querySelectorAll('.news-card');
+  var total = cards.length;
+  var page = 0;
+
+  function perView() {
+    if (window.innerWidth >= 1024) return 3;
+    if (window.innerWidth >= 768) return 2;
+    return 1;
+  }
+
+  function totalPages() { return Math.ceil(total / perView()); }
+
+  function goTo(p) {
+    var pages = totalPages();
+    page = ((p % pages) + pages) % pages;
+    var pv = perView();
+    var offset = page * pv;
+    if (offset > total - pv) offset = total - pv;
+    track.style.transform = 'translateX(-' + (offset * 100 / pv) + '%)';
+    var counter = document.getElementById('newsCounter');
+    var start = offset + 1;
+    var end = Math.min(offset + pv, total);
+    if (counter) counter.textContent = '第 ' + start + ' – ' + end + ' 場，共 ' + total + ' 場（' + (page + 1) + ' / ' + pages + ' 頁）';
+  }
+
+  document.getElementById('newsNext').addEventListener('click', function() { goTo(page + 1); });
+  document.getElementById('newsPrev').addEventListener('click', function() { goTo(page - 1); });
+  window.addEventListener('resize', function() { goTo(page); });
+  goTo(0);
+})();
