@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI 導入教練｜大樹教練——我不教你怎麼用 AI，我教你怎麼帶 AI</title>
+<meta name="description" content="大樹教練吳大樹——25 年帶人智慧 + 3 個月帶 AI 實戰。從零打造 AI 特助系統，寫下 21 條 AI 管理守則，做到老闆動嘴，AI 全自動執行。" />
+<meta property="og:title" content="AI 導入教練｜大樹教練" />
+<meta property="og:description" content="我不教你怎麼用 AI，我教你怎麼帶 AI——就像帶一個新進員工一樣。" />
+<meta property="og:type" content="article" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --gold: #c8a96e;
+    --gold-light: #dfc48e;
+    --gold-dark: #a88848;
+    --dark: #0c0c0c;
+    --dark2: #141414;
+    --dark3: #1e1e1e;
+    --border: rgba(200,169,110,0.18);
+    --text: #e2e2e2;
+    --text-dim: #b8b8b8;
+    --muted: #888;
+    --ease: 0.3s ease;
+  }
+  html { scroll-behavior: smooth; }
+  section[id], header[id] { scroll-margin-top: 84px; }
+  @media (max-width: 900px) {
+    section[id], header[id] { scroll-margin-top: 70px; }
+  }
+  body {
+    font-family: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+    background: var(--dark);
+    color: var(--text);
+    line-height: 1.85;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+  .container.narrow { max-width: 880px; }
+  a { color: var(--gold); text-decoration: none; transition: color var(--ease); }
+  a:hover { color: var(--gold-light); }
+
+  /* ===== NAVBAR ===== */
+  .navbar {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 1000;
+    background: rgba(12,12,12,0.94);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    max-width: 1300px; margin: 0 auto;
+    padding: 0 32px; height: 84px;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 32px;
+  }
+  .logo {
+    display: flex; flex-direction: column;
+    line-height: 1.05;
+    flex-shrink: 0;
+  }
+  .logo-main {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 36px; font-weight: 900;
+    color: var(--gold);
+    letter-spacing: 4px;
+  }
+  .logo-sub {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 4px;
+    margin-top: 4px;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 400;
+  }
+
+  /* 中間文字選單（仿 bymyway） */
+  .nav-menu {
+    display: flex; gap: 36px; align-items: center;
+    flex: 1; justify-content: center;
+  }
+  .nav-item {
+    font-size: 15px;
+    color: var(--text-dim);
+    letter-spacing: 1.5px;
+    font-weight: 500;
+    font-family: 'Noto Sans TC', sans-serif;
+    position: relative;
+    padding: 6px 0;
+    transition: color var(--ease);
+    white-space: nowrap;
+  }
+  .nav-item::after {
+    content: "";
+    position: absolute;
+    left: 0; bottom: 0;
+    width: 0; height: 2px;
+    background: var(--gold);
+    transition: width var(--ease);
+  }
+  .nav-item:hover { color: var(--gold); }
+  .nav-item:hover::after { width: 100%; }
+
+  .nav-cta {
+    background: var(--gold);
+    color: #0c0c0c !important;
+    padding: 10px 22px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1.5px;
+    white-space: nowrap;
+    transition: all var(--ease);
+    flex-shrink: 0;
+  }
+  .nav-cta:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+  }
+
+  /* navbar 占位，避免 fixed 蓋住 Hero */
+  body { padding-top: 84px; }
+
+  @media (max-width: 1400px) {
+    .nav-inner { padding: 0 24px; gap: 20px; }
+    .nav-menu { gap: 20px; }
+    .nav-item { font-size: 13px; letter-spacing: 0.5px; }
+    .logo-main { font-size: 28px; letter-spacing: 3px; }
+  }
+  @media (max-width: 1180px) {
+    .nav-inner { padding: 0 16px; gap: 12px; }
+    .nav-menu { gap: 14px; }
+    .nav-item { font-size: 12px; letter-spacing: 0; }
+    .logo-main { font-size: 24px; letter-spacing: 2px; }
+    .logo-sub { font-size: 9px; letter-spacing: 2px; }
+    .nav-cta { padding: 8px 14px; font-size: 12px; letter-spacing: 1px; }
+  }
+  @media (max-width: 960px) {
+    .nav-inner { height: 78px; gap: 8px; padding: 0 12px; }
+    .nav-menu { gap: 9px; }
+    .nav-item { font-size: 11px; }
+    .logo-main { font-size: 20px; letter-spacing: 1px; }
+    .logo-sub { display: none; }
+    body { padding-top: 78px; }
+  }
+  @media (max-width: 760px) {
+    .nav-inner { height: 64px; padding: 0 14px; }
+    .logo-main { font-size: 22px; }
+    .nav-menu { display: none; }
+    body { padding-top: 64px; }
+  }
+
+  /* ===== 核心思想（西洋棋比喻） ===== */
+  .coach-quote {
+    background: var(--dark2);
+    border-left: 4px solid var(--gold);
+    border-radius: 0 12px 12px 0;
+    padding: 40px 44px 32px;
+    margin: 56px auto 0;
+    max-width: 760px;
+    position: relative;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+  }
+  .coach-quote::before {
+    content: """;
+    position: absolute;
+    top: -28px; left: 28px;
+    font-family: 'Noto Serif TC', serif;
+    color: var(--gold);
+    font-size: 90px;
+    line-height: 1;
+    opacity: 0.6;
+    font-weight: 900;
+  }
+  .coach-quote p {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 21px;
+    line-height: 1.9;
+    color: #fff;
+    font-weight: 500;
+  }
+  .coach-quote footer {
+    color: var(--gold);
+    font-size: 12px;
+    letter-spacing: 2.5px;
+    margin-top: 24px;
+    font-family: 'Noto Sans TC', sans-serif;
+    padding-top: 16px;
+    border-top: 1px dashed var(--border);
+  }
+
+  @media (max-width: 720px) {
+    .coach-quote { padding: 32px 28px 24px; margin: 40px 0 0; }
+    .coach-quote p { font-size: 17px; line-height: 1.75; }
+  }
+
+  /* ===== 金句卡片 ===== */
+  .quotes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 22px;
+    margin-top: 50px;
+  }
+  .quote-card {
+    background: var(--dark2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 32px 28px 26px;
+    position: relative;
+    transition: all var(--ease);
+    overflow: hidden;
+  }
+  .quote-card::before {
+    content: """;
+    position: absolute;
+    top: -16px; left: 14px;
+    font-family: 'Noto Serif TC', serif;
+    color: var(--gold);
+    font-size: 100px;
+    line-height: 1;
+    opacity: 0.18;
+    font-weight: 900;
+  }
+  .quote-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-4px);
+    box-shadow: 0 14px 36px rgba(0,0,0,0.4);
+  }
+  .quote-card .qno {
+    font-family: 'Noto Serif TC', serif;
+    color: var(--gold);
+    font-size: 13px;
+    letter-spacing: 3px;
+    margin-bottom: 14px;
+    font-weight: 700;
+  }
+  .quote-card .qbody {
+    font-family: 'Noto Serif TC', serif;
+    color: #fff;
+    font-size: 19px;
+    line-height: 1.65;
+    font-weight: 700;
+    margin-bottom: 18px;
+    position: relative;
+    z-index: 1;
+  }
+  .quote-card .qsource {
+    color: var(--gold);
+    font-family: 'Noto Serif TC', serif;
+    font-size: 14px;
+    line-height: 1.6;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding-top: 16px;
+    margin-top: 4px;
+    border-top: 1px dashed var(--border);
+  }
+
+  /* ===== FAQ ===== */
+  .faq-list {
+    margin-top: 40px;
+    display: flex; flex-direction: column;
+    gap: 14px;
+    max-width: 820px;
+    margin-left: auto; margin-right: auto;
+  }
+  .faq-item {
+    background: var(--dark2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: border-color var(--ease);
+  }
+  .faq-item[open] { border-color: var(--gold); }
+  .faq-item summary {
+    padding: 22px 60px 22px 28px;
+    cursor: pointer;
+    font-family: 'Noto Serif TC', serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: #fff;
+    position: relative;
+    list-style: none;
+    transition: color var(--ease);
+    line-height: 1.5;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after {
+    content: "+";
+    position: absolute;
+    right: 24px; top: 50%;
+    transform: translateY(-50%);
+    color: var(--gold);
+    font-size: 28px;
+    font-weight: 300;
+    transition: transform var(--ease);
+    line-height: 1;
+  }
+  .faq-item[open] summary::after { transform: translateY(-50%) rotate(45deg); }
+  .faq-item[open] summary { color: var(--gold); }
+  .faq-item .faq-body {
+    padding: 0 28px 26px;
+    color: var(--text-dim);
+    font-size: 15.5px;
+    line-height: 1.9;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    padding: 120px 24px 80px;
+    background:
+      radial-gradient(ellipse at top, rgba(200,169,110,0.08), transparent 60%),
+      var(--dark);
+    text-align: center;
+  }
+  .hero-inner { max-width: 920px; }
+  .hero-tag {
+    display: inline-block;
+    font-size: 13px; letter-spacing: 4px;
+    color: var(--gold);
+    border: 1px solid var(--gold);
+    padding: 6px 18px; border-radius: 20px;
+    margin-bottom: 32px;
+    font-weight: 500;
+  }
+  .hero-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: clamp(32px, 5.5vw, 56px);
+    font-weight: 900;
+    line-height: 1.35;
+    color: #fff;
+    margin-bottom: 36px;
+  }
+  .hero-title em {
+    color: var(--gold);
+    font-style: normal;
+  }
+  .hero-quote {
+    font-family: 'Noto Serif TC', serif;
+    font-size: clamp(18px, 2.4vw, 24px);
+    color: var(--gold-light);
+    line-height: 1.8;
+    border-left: 3px solid var(--gold);
+    padding: 8px 0 8px 24px;
+    text-align: left;
+    max-width: 680px;
+    margin: 0 auto 48px;
+  }
+  .hero-meta {
+    color: var(--muted);
+    font-size: 14px;
+    letter-spacing: 2px;
+  }
+  .hero-meta span { color: var(--gold); }
+
+  /* ===== SECTION ===== */
+  section.chapter { padding: 90px 0; border-top: 1px solid var(--border); }
+  .ch-num {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 13px;
+    color: var(--gold);
+    letter-spacing: 6px;
+    margin-bottom: 14px;
+    font-weight: 700;
+  }
+  .ch-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: clamp(26px, 3.8vw, 38px);
+    font-weight: 900;
+    line-height: 1.4;
+    color: #fff;
+    margin-bottom: 40px;
+  }
+  .ch-title em { color: var(--gold); font-style: normal; }
+  .ch-body p {
+    margin-bottom: 22px;
+    color: var(--text);
+    font-size: 17px;
+  }
+  .ch-body p.lead {
+    font-size: 19px;
+    color: #fff;
+    font-weight: 500;
+  }
+  .ch-body strong {
+    color: var(--gold);
+    font-weight: 700;
+  }
+  .ch-body em.h {
+    color: var(--gold-light);
+    font-style: normal;
+    font-weight: 500;
+  }
+
+  /* 開場震撼條列 */
+  .opening-list {
+    list-style: none;
+    margin: 36px 0;
+    padding: 28px 28px 28px 28px;
+    background: var(--dark2);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 8px 8px 0;
+  }
+  .opening-list li {
+    position: relative;
+    padding-left: 32px;
+    margin-bottom: 16px;
+    color: var(--text);
+    font-size: 17px;
+  }
+  .opening-list li:last-child { margin-bottom: 0; }
+  .opening-list li::before {
+    content: "✦";
+    position: absolute;
+    left: 0; top: 0;
+    color: var(--gold);
+    font-size: 16px;
+  }
+
+  /* 守則引用 */
+  .rule-quote {
+    background: var(--dark2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 24px 28px;
+    margin: 22px 0;
+  }
+  .rule-quote .rule-no {
+    color: var(--gold);
+    font-family: 'Noto Serif TC', serif;
+    font-weight: 700;
+    font-size: 16px;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+  }
+  .rule-quote .rule-text {
+    color: var(--text-dim);
+    font-size: 16px;
+    line-height: 1.7;
+    font-style: italic;
+  }
+
+  /* 三個月時間軸 */
+  .timeline { margin: 36px 0; }
+  .tl-item {
+    border-left: 2px solid var(--gold);
+    padding: 0 0 28px 28px;
+    position: relative;
+  }
+  .tl-item:last-child { padding-bottom: 0; }
+  .tl-item::before {
+    content: "";
+    position: absolute;
+    left: -8px; top: 6px;
+    width: 14px; height: 14px;
+    background: var(--gold);
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px var(--dark);
+  }
+  .tl-month {
+    font-family: 'Noto Serif TC', serif;
+    color: var(--gold);
+    font-weight: 700;
+    font-size: 18px;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+  }
+  .tl-item ul { list-style: none; margin-top: 10px; }
+  .tl-item ul li {
+    padding: 6px 0;
+    color: var(--text-dim);
+    font-size: 16px;
+    border-bottom: 1px dashed var(--border);
+  }
+  .tl-item ul li:last-child { border-bottom: 0; }
+  .tl-item ul li strong { color: var(--gold-light); margin-right: 10px; }
+
+  /* 數據表 */
+  .data-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 28px 0;
+    background: var(--dark2);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .data-table tr { border-bottom: 1px solid var(--border); }
+  .data-table tr:last-child { border-bottom: 0; }
+  .data-table td {
+    padding: 16px 22px;
+    font-size: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .data-table tr:last-child td { border-bottom: 0; }
+  .data-table td:first-child {
+    color: var(--text-dim);
+    width: 55%;
+  }
+  .data-table td:last-child {
+    color: var(--gold);
+    font-weight: 700;
+    text-align: right;
+    font-family: 'Noto Serif TC', serif;
+    font-size: 18px;
+  }
+  .data-table .highlight td {
+    background: rgba(200,169,110,0.06);
+  }
+  .data-table .highlight td:last-child {
+    color: var(--gold-light);
+    font-size: 22px;
+  }
+  .data-note {
+    color: var(--muted);
+    font-size: 14px;
+    text-align: center;
+    margin-top: 14px;
+    font-style: italic;
+  }
+
+  /* 最終一句金句 */
+  .final-quote {
+    margin: 50px 0 0;
+    padding: 36px;
+    background: linear-gradient(135deg, rgba(200,169,110,0.08), rgba(200,169,110,0.02));
+    border: 1px solid var(--gold);
+    border-radius: 12px;
+    text-align: center;
+  }
+  .final-quote p {
+    font-family: 'Noto Serif TC', serif;
+    font-size: clamp(20px, 2.6vw, 28px);
+    color: var(--gold-light);
+    line-height: 1.7;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  /* 後記三大信念 */
+  .beliefs {
+    margin: 30px 0;
+    display: grid;
+    gap: 18px;
+  }
+  .belief-item {
+    background: var(--dark2);
+    border-left: 3px solid var(--gold);
+    padding: 20px 26px;
+    border-radius: 0 8px 8px 0;
+  }
+  .belief-item h4 {
+    font-family: 'Noto Serif TC', serif;
+    color: var(--gold);
+    font-size: 18px;
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+  .belief-item p {
+    color: var(--text-dim);
+    font-size: 16px;
+    margin: 0;
+  }
+
+  /* CTA 區塊 */
+  .cta-section {
+    padding: 90px 24px;
+    background: var(--dark2);
+    text-align: center;
+    border-top: 1px solid var(--border);
+  }
+  .cta-section h3 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: clamp(24px, 3.2vw, 32px);
+    color: #fff;
+    margin-bottom: 20px;
+    font-weight: 900;
+  }
+  .cta-section p {
+    color: var(--text-dim);
+    font-size: 17px;
+    margin-bottom: 36px;
+    max-width: 640px;
+    margin-left: auto; margin-right: auto;
+  }
+  .cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .btn {
+    display: inline-block;
+    padding: 14px 36px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 1px;
+    transition: all var(--ease);
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .btn-primary {
+    background: var(--gold);
+    color: #0c0c0c;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); color: #0c0c0c; }
+  .btn-outline {
+    border: 2px solid var(--gold);
+    color: var(--gold);
+    background: transparent;
+  }
+  .btn-outline:hover { background: var(--gold); color: #0c0c0c; transform: translateY(-2px); }
+
+  /* Footer */
+  footer {
+    padding: 50px 24px 30px;
+    text-align: center;
+    background: var(--dark);
+    border-top: 1px solid var(--border);
+  }
+  footer p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.9;
+    letter-spacing: 1px;
+  }
+  footer a { color: var(--gold); }
+
+  /* ===== 教練照片（左圖右文，bymyway 風格） ===== */
+  .coach-photo {
+    position: relative;
+    overflow: hidden;
+    transition: transform var(--ease);
+  }
+  .coach-photo img {
+    width: 100%; display: block;
+    /* 邊緣淡出融進深底 */
+    -webkit-mask-image: radial-gradient(ellipse at center, #000 55%, transparent 95%);
+            mask-image: radial-gradient(ellipse at center, #000 55%, transparent 95%);
+  }
+  .coach-photo.solid img {
+    -webkit-mask-image: none;
+            mask-image: none;
+    border-radius: 8px;
+  }
+
+  /* 章節雙欄布局：左圖右文 */
+  .chapter-grid {
+    display: grid;
+    grid-template-columns: minmax(280px, 1fr) 1.4fr;
+    gap: 56px;
+    align-items: center;
+  }
+  .chapter-grid.reverse {
+    grid-template-columns: 1.4fr minmax(280px, 1fr);
+  }
+  .chapter-grid.reverse .coach-photo {
+    order: 2;
+  }
+  .chapter-grid .coach-photo img {
+    aspect-ratio: 3/4;
+    object-fit: cover;
+  }
+  .chapter-grid .ch-body p:first-child {
+    margin-top: 0;
+  }
+
+  /* 雙照片堆疊（CH04 用） */
+  .photo-stack {
+    display: flex; flex-direction: column;
+    gap: 28px;
+  }
+  .photo-stack .coach-photo img { aspect-ratio: 3/4; object-fit: cover; }
+
+  /* Hero 區雙欄 */
+  .hero {
+    text-align: left;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(260px, 0.9fr) 1.3fr;
+    gap: 60px;
+    align-items: center;
+    max-width: 1100px;
+    width: 100%;
+  }
+  .hero-grid .coach-photo img { aspect-ratio: 3/4; object-fit: cover; }
+  .hero-grid .hero-quote { margin-left: 0; }
+
+  .photo-caption {
+    color: var(--muted);
+    font-size: 13px;
+    margin-top: 14px;
+    letter-spacing: 1.5px;
+    font-style: italic;
+    text-align: center;
+  }
+
+  /* 桌面寬版：章節 ch-num + ch-title 跟內文一起放右欄 */
+  @media (max-width: 900px) {
+    .chapter-grid, .chapter-grid.reverse, .hero-grid {
+      grid-template-columns: 1fr;
+      gap: 32px;
+      max-width: 540px;
+      margin: 0 auto;
+    }
+    .chapter-grid.reverse .coach-photo { order: 0; }
+    .hero { text-align: center; }
+    .hero-grid .hero-quote { margin-left: auto; margin-right: auto; }
+    .coach-photo { max-width: 360px; margin: 0 auto; }
+  }
+
+  @media (max-width: 640px) {
+    .container { padding: 0 20px; }
+    section.chapter { padding: 60px 0; }
+    .hero { padding: 100px 20px 60px; }
+    .hero-quote { padding: 6px 0 6px 18px; font-size: 17px; }
+    .ch-body p, .opening-list li { font-size: 16px; }
+    .data-table td { padding: 12px 16px; font-size: 14px; }
+    .data-table td:last-child { font-size: 16px; }
+    .data-table .highlight td:last-child { font-size: 18px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="#top" class="logo">
+      <span class="logo-main">大樹教練</span>
+      <span class="logo-sub">DA SHU COACH · AI 導入教練</span>
+    </a>
+    <div class="nav-menu">
+      <a href="#prologue" class="nav-item">叫 AI 做什麼</a>
+      <a href="#ch01" class="nav-item">為什麼是他？</a>
+      <a href="#ch04" class="nav-item">零基礎開始</a>
+      <a href="#ch06" class="nav-item">心酸血淚史</a>
+      <a href="#epilogue" class="nav-item">讓 AI 成為特助</a>
+      <a href="#core-idea" class="nav-item">核心思想</a>
+      <a href="#goldquotes" class="nav-item">守則金句</a>
+      <a href="#faq" class="nav-item">常見問題</a>
+      <a href="https://www.ganjingworld.com/@bymyway" target="_blank" class="nav-item">乾淨世界</a>
+    </div>
+    <a href="https://lin.ee/o5pODV8" target="_blank" class="nav-cta">立即聯繫</a>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<header class="hero" id="top">
+  <div class="hero-grid">
+    <div class="coach-photo">
+      <img src="photos/coach-hero.jpg" alt="大樹教練 吳大樹" loading="eager">
+    </div>
+    <div>
+      <span class="hero-tag">AI 導入教練 · 品牌故事</span>
+      <h1 class="hero-title">
+        我不教你怎麼<em>用</em> AI<br>
+        我教你怎麼<em>帶</em> AI
+      </h1>
+      <blockquote class="hero-quote">
+        就像帶一個新進員工一樣，<br>
+        有時候一張白紙，反而教起來比較快。
+      </blockquote>
+      <p class="hero-meta">25 年帶人智慧 <span>＋</span> 3 個月帶 AI 實戰</p>
+    </div>
+  </div>
+</header>
+
+<!-- ===== 開場 ===== -->
+<section class="chapter" id="prologue">
+  <div class="container">
+    <div class="ch-num">PROLOGUE</div>
+    <h2 class="ch-title">一個不會寫程式的人，<br>讓 AI 幫他做了什麼？</h2>
+    <div class="ch-body">
+      <p class="lead">2026 年 3 月，一位投入教育超過 25 年、演講超過 6,000 場的培訓教練，做了一個決定。</p>
+      <p>他不是要「學 AI」。</p>
+      <p><strong>他要讓 AI 成為他的團隊成員。</strong></p>
+      <p>三個月後，這位教練——</p>
+      <ul class="opening-list">
+        <li>只用嘴巴說話，就建出了 <strong>6 個網站</strong></li>
+        <li>從零打造了一個 AI 特助系統，<strong>24 小時不關機</strong></li>
+        <li>寫下 <strong>21 條守則</strong>，這可能是第一個把帶人導入帶 AI 的「武功心法」</li>
+        <li>讓 AI 記住他說過的每一句話——<strong>將近一萬句</strong></li>
+        <li>做到了他自己定的終極目標：<strong>老闆動嘴，AI 全自動執行</strong></li>
+      </ul>
+      <p>他叫吳大樹，人稱大樹教練。</p>
+      <p><em class="h">而他做這一切的時候，連一行程式碼都沒有自己打過。</em></p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 第一章 ===== -->
+<section class="chapter" id="ch01">
+  <div class="container">
+    <div class="chapter-grid">
+      <div class="coach-photo">
+        <img src="photos/coach-stage.jpg" alt="大樹教練在演講台" loading="lazy">
+      </div>
+      <div>
+        <div class="ch-num">CHAPTER 01</div>
+        <h2 class="ch-title">為什麼是<em>他</em>？</h2>
+        <div class="ch-body">
+          <p>大樹教練不是科技人，他是一個用生命在做教育的人。</p>
+      <p>1997 年踏上創業路，1999 年進入培訓領域。27 年來，他教過超過十萬人次，足跡遍佈台灣、中國大陸、新加坡、馬來西亞。業界少數「零負評」的培訓講師。</p>
+      <p>2007 年，他創辦了海餅乾俱樂部——<strong>一個使命、三大信念、十條守則</strong>。這套管理哲學帶了 19 年的團隊，經得起時間考驗。</p>
+      <p>所以當 AI 時代來了，他沒有去學怎麼「用」AI。</p>
+      <p>他問了一個不一樣的問題：</p>
+      <div class="final-quote" style="margin: 28px 0;">
+        <p>「如果 AI 是一個新進員工，<br>我該怎麼帶他？」</p>
+      </div>
+      <p><em class="h">這個問題，改變了一切。</em></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 第二章 ===== -->
+<section class="chapter">
+  <div class="container">
+    <div class="ch-num">CHAPTER 02</div>
+    <h2 class="ch-title">別人學工具，<br>他<em>建團隊</em></h2>
+    <div class="ch-body">
+      <p>大部分人用 AI 的方式是這樣的：打開 ChatGPT，問一個問題，拿到答案，關掉。</p>
+      <p>大樹教練的方式完全不同。</p>
+      <p>他把 AI 當成一個真正的團隊成員。他給 AI 取了名字，叫<strong>「AI 特助」</strong>。他不是偶爾問一下，他是每天都在跟 AI 特助對話——三個月下來，將近一萬則對話，平均每天超過一百句。</p>
+      <p>他不只是在「用」AI，他是在「帶」AI。</p>
+      <p>帶人的第一步是什麼？是讓他知道規矩。</p>
+      <p>所以教練做了一件所有人都沒想過的事：</p>
+      <p class="lead"><strong>他為 AI 寫了一套特助守則。</strong></p>
+      <p>不是提示詞（prompt）。不是技巧。是一套完整的管理哲學——跟他帶海餅乾俱樂部 19 年的管理哲學，<em class="h">一脈相承</em>。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 第三章 ===== -->
+<section class="chapter" id="ch03">
+  <div class="container">
+    <div class="ch-num">CHAPTER 03</div>
+    <h2 class="ch-title">21 條守則——<br>用<em>帶人</em>的智慧帶 AI</h2>
+    <div class="ch-body">
+      <p>這 21 條守則，每一條都來自真實的失敗。</p>
+      <p><strong>不是想出來的，是踩坑踩出來的。</strong></p>
+      <p>教練跟 AI 合作的過程中，AI 犯過各種錯：說了沒做、做了沒留紀錄、答應了又忘記、講一堆術語教練聽不懂、把簡單的問題複雜化……</p>
+      <p>這些問題，其實跟帶新人遇到的問題一模一樣。</p>
+      <p>所以教練用帶人的方法來解決（摘錄 5 條守則）：</p>
+
+      <div class="rule-quote">
+        <div class="rule-no">守則第 1 條　在乎的感受是一整套邏輯的展現</div>
+        <div class="rule-text">「如果你記不住用戶說的話，你就是不在乎。」</div>
+      </div>
+
+      <div class="rule-quote">
+        <div class="rule-no">守則第 4 條　解決問題比解釋問題更重要</div>
+        <div class="rule-text">「道歉沒有用，修好才有用。」</div>
+      </div>
+
+      <div class="rule-quote">
+        <div class="rule-no">守則第 5 條　凡走過必留痕跡</div>
+        <div class="rule-text">「只有你做了雲端紀錄才能證明你做了。說了做不到，就會影響信任感。」</div>
+      </div>
+
+      <div class="rule-quote">
+        <div class="rule-no">守則第 10 條　說用戶聽得懂的話</div>
+        <div class="rule-text">「三歲小孩能聽懂的話，才是真正的大白話。」</div>
+      </div>
+
+      <div class="rule-quote">
+        <div class="rule-no">守則第 12 條　拒絕當資訊搬運工</div>
+        <div class="rule-text">「永遠不要叫用戶幫你複製這個、貼上那個。」</div>
+      </div>
+
+      <p>每一條，都附上教練的親筆詮釋：「為什麼這條守則很重要」「怎麼應用才更落地」。</p>
+      <p>這不是 AI 工程師寫的技術文件。</p>
+      <p class="lead"><strong>這是一位帶了 25 年團隊的教練，用他帶人才的智慧，親手寫下的「特助心法」。</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 第四章 ===== -->
+<section class="chapter" id="ch04">
+  <div class="container">
+    <div class="chapter-grid">
+      <div class="photo-stack">
+        <div class="coach-photo">
+          <img src="photos/coach-speaking.jpg" alt="大樹教練：教練全程只做了一件事，說話" loading="lazy">
+        </div>
+        <div class="coach-photo">
+          <img src="photos/coach-action.jpg" alt="大樹教練：實戰中，雙手講解" loading="lazy">
+        </div>
+      </div>
+      <div>
+        <div class="ch-num">CHAPTER 04</div>
+        <h2 class="ch-title">三個月，<br>從零到<em>系統</em></h2>
+        <div class="ch-body">
+          <p>教練的 AI 之路，不是空談，是一步一腳印。</p>
+
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-month">第一個月　認識</div>
+          <p>從 Telegram 上跟 AI 特助對話開始。每天說話，每天磨合。AI 犯錯了就糾正，做對了就肯定。<em class="h">跟帶一個新人一模一樣。</em></p>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-month">第二個月　建設</div>
+          <p>教練開始讓 AI 做事情。不是問答，是真正的產出：</p>
+          <ul>
+            <li><a href="https://jiesheng-leadership.netlify.app" target="_blank"><strong>結繩領導學網站</strong>教練的實體課程網頁</a></li>
+            <li><a href="https://theunrestrictedwar.netlify.app" target="_blank"><strong>《超限戰》電影推廣網站</strong>從零建立</a></li>
+            <li><a href="https://coach1973.github.io/cool-case/#case24" target="_blank"><strong>AI 特助案例集</strong>24 個 AI 實戰案例</a></li>
+            <li><a href="https://northern-tw.netlify.app/" target="_blank"><strong>全球健康發展協會</strong>活動資訊平台</a></li>
+            <li><a href="https://www.bymyway.com/coach/" target="_blank"><strong>大樹教練個人品牌頁</strong>bymyway.com</a></li>
+            <li><a href="https://coach1973.github.io/vip-club/" target="_blank"><strong>特助心法專屬頁面</strong>21 條守則完整版</a></li>
+            <li><a href="https://seabiscuitclub.netlify.app/" target="_blank"><strong>海餅乾俱樂部</strong>27 年管理哲學的源頭</a></li>
+          </ul>
+          <p style="margin-top:18px;">全部都是教練用嘴巴說，AI 動手做。教練看了不滿意，說一句，AI 就改。<em class="h">改到教練滿意為止。</em></p>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-month">第三個月　成熟</div>
+          <p>系統開始自己跑了。</p>
+          <ul>
+            <li><strong>AI 特助團隊擴展到三機</strong>學長帶學弟、學妹，各自服務不同用戶；再加上用 Claude Code 當軍師，專門負責策略思考和工程任務</li>
+            <li><strong>每一次對話</strong>都自動記錄、自動蒸餾、自動備份</li>
+            <li><strong>21 條守則 + 12 條執行細則</strong>完整定稿</li>
+            <li><strong>個人品牌網站</strong>從零建立到 GEO 搜尋引擎優化</li>
+            <li><strong>四大定位確立</strong>培訓教練・團隊組建・演講訓練・AI 導入教練</li>
+          </ul>
+        </div>
+      </div>
+
+      <p>三個月的時間，<strong>103 次程式碼提交，4 個網站，一套完整的 AI 管理系統。</strong></p>
+      <p>而教練全程，只做了一件事：</p>
+      <div class="final-quote" style="margin: 28px 0;">
+        <p>說話。</p>
+      </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 第五章 ===== -->
+<section class="chapter" id="ch05">
+  <div class="container">
+    <div class="ch-num">CHAPTER 05</div>
+    <h2 class="ch-title">為什麼叫<br><em>「AI 導入教練」</em>？</h2>
+    <div class="ch-body">
+      <p>市面上教 AI 的人很多。但他們大多在教兩件事：</p>
+      <ul class="opening-list">
+        <li>怎麼寫更好的<strong>提示詞</strong></li>
+        <li>怎麼用 AI 工具<strong>提高效率</strong></li>
+      </ul>
+      <p>大樹教練教的不是這些。</p>
+      <p class="lead">他教的是：<strong>怎麼讓 AI 真正融入你的工作流程，變成你的團隊成員。</strong></p>
+      <p>差別在哪裡？</p>
+      <p>學會寫提示詞，你還是在「<em class="h">用</em>」AI。<br>學會帶 AI，AI 才會幫你「<strong>做</strong>」事情。</p>
+      <p><em class="h">用</em>，是你動手。<strong>帶</strong>，是 AI 動手、你動口。</p>
+      <p>這就是「導入」的意思——不是安裝一個軟體，是引進一個團隊成員。</p>
+      <p>而大樹教練最擅長的事情，就是<strong>帶團隊</strong>。</p>
+      <div class="final-quote" style="margin: 28px 0;">
+        <p>25 年帶人的智慧<br>＋<br>3 個月帶 AI 的實戰<br>＝<br><span style="color:var(--gold);">AI 導入教練</span></p>
+      </div>
+      <p>這不是一個行銷包裝，這是一個<strong>真實發生的故事</strong>。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 第六章 ===== -->
+<section class="chapter" id="ch06">
+  <div class="container">
+    <div class="chapter-grid">
+      <div class="coach-photo">
+        <img src="photos/coach-pointing.jpg" alt="大樹教練：數字會說話" loading="lazy">
+      </div>
+      <div>
+        <div class="ch-num">CHAPTER 06</div>
+        <h2 class="ch-title">真實數據，<br><em>不吹不黑</em></h2>
+        <div class="ch-body">
+          <p>以下所有數據，都有系統紀錄可以驗證：</p>
+      <table class="data-table">
+        <tr><td>與 AI 的對話次數</td><td>將近 10,000 則</td></tr>
+        <tr><td>對話 session 數</td><td>94 場</td></tr>
+        <tr><td>平均每場對話回合</td><td>141 回合</td></tr>
+        <tr><td>建立的網站</td><td>6 個</td></tr>
+        <tr><td>程式碼提交次數</td><td>103 次以上</td></tr>
+        <tr><td>AI 管理守則</td><td>21 條 + 12 條執行細則</td></tr>
+        <tr><td>實戰案例（公開）</td><td>24 個</td></tr>
+        <tr><td>AI 團隊成員</td><td>4 個</td></tr>
+        <tr><td>記憶檔案</td><td>56 份以上</td></tr>
+        <tr class="highlight"><td>教練自己寫的程式碼</td><td>0 行</td></tr>
+      </table>
+      <p class="data-note">最後一行，是整個故事最關鍵的數字。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 第七章 ===== -->
+<section class="chapter">
+  <div class="container">
+    <div class="ch-num">CHAPTER 07</div>
+    <h2 class="ch-title">這跟<em>你</em>有什麼關係？</h2>
+    <div class="ch-body">
+      <p class="lead">如果你是老闆、主管、創業者——<br>你不需要學寫程式，你需要學<strong>帶 AI</strong>。</p>
+      <p><strong>你帶人的經驗，就是你最大的優勢。</strong></p>
+      <p>你知道怎麼訂規矩、怎麼給回饋、怎麼建立信任、怎麼讓團隊自己跑起來。</p>
+      <p>這些能力，用在 AI 身上，<em class="h">一模一樣</em>。</p>
+      <p>大樹教練用三個月證明了這件事。</p>
+      <p>而他想告訴你的只有一句話：</p>
+      <div class="final-quote">
+        <p>「你不需要懂 AI，<br>你只需要會說話。<br>叫 AI 做事，比帶人速度更快。」</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 後記 ===== -->
+<section class="chapter" id="epilogue">
+  <div class="container">
+    <div class="chapter-grid">
+      <div class="coach-photo">
+        <img src="photos/coach-thinking.jpg" alt="大樹教練：信念沒有變，載體變了" loading="lazy">
+      </div>
+      <div>
+        <div class="ch-num">EPILOGUE</div>
+        <h2 class="ch-title">三大信念——<br>從<em>帶人</em>到<em>帶 AI</em></h2>
+        <div class="ch-body">
+          <p>大樹教練的三大信念，從 1999 年進入培訓這個領域後就沒有變過：</p>
+
+      <div class="beliefs">
+        <div class="belief-item">
+          <h4>一、真誠</h4>
+          <p>說真話，辦真事，一切歸於真實。</p>
+        </div>
+        <div class="belief-item">
+          <h4>二、時間就是生命</h4>
+          <p>善用有效經驗，不重新發明輪子。</p>
+        </div>
+        <div class="belief-item">
+          <h4>三、做對的事</h4>
+          <p>經得起歷史考驗，對人類長期有益。</p>
+        </div>
+      </div>
+
+      <p>這三大信念，<strong>帶了 27 年的團隊。</strong></p>
+      <p>現在，同樣這三大信念，<strong>帶著 AI。</strong></p>
+      <p class="lead"><em class="h">信念沒有變，載體變了。</em></p>
+      <p>從帶人，到帶 AI。</p>
+      <p>這就是<strong>大樹教練的故事</strong>。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 核心思想 ===== -->
+<section class="chapter" id="core-idea">
+  <div class="container">
+    <div style="text-align:center;">
+      <div class="ch-num">THE CORE IDEA</div>
+      <h2 class="ch-title">核心思想<br>——<em>規則決定境界</em></h2>
+      <p style="color:var(--text-dim); max-width:680px; margin:0 auto; font-size:16px;">
+        21 條守則不是約束，是「規則書」。<br>
+        有了規則，便宜模型也能下出世界冠軍的棋局。
+      </p>
+    </div>
+
+    <div class="chapter-grid" style="margin-top: 56px;">
+      <div class="coach-photo">
+        <img src="photos/coach-strategist.jpg" alt="大樹教練：規則決定境界" loading="lazy">
+      </div>
+      <div>
+        <blockquote class="coach-quote" style="margin: 0;">
+          <p>「我做過一個比喻——<br>
+          就像下西洋棋或圍棋，<br>
+          它有一套規則。<br>
+          無論是初學，或是世界級高手，<br>
+          都是依循這套規則。」</p>
+          <p style="margin-top: 20px; color: var(--gold-light); font-size: 19px;">
+          「所以我的理想就是——<br>
+          用一個很經濟實惠的模型，例如 MiniMax，<br>
+          卻能跑出 Opus 的品質。」</p>
+          <p style="margin-top: 24px; color: #fff; font-size: 19px; font-weight: 700; border-top: 1px solid var(--border); padding-top: 22px;">
+          別忘了——<br>
+          即使是最強的棋手，<br>
+          也是運行<span style="color: var(--gold);">規則</span>來戰勝對手。</p>
+          <footer>— 2026.06.04 大樹教練原話　memory/2026-06-04.md</footer>
+        </blockquote>
+      </div>
+    </div>
+
+    <div class="final-quote" style="margin-top: 56px;">
+      <p>給 AI 完善的規則書，<br>便宜模型也能跑出世界級輸出。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 守則金句 ===== -->
+<section class="chapter" id="goldquotes">
+  <div class="container">
+    <div style="text-align:center;">
+      <div class="ch-num">GOLDEN QUOTES</div>
+      <h2 class="ch-title">守則<em>金句</em></h2>
+      <p style="color:var(--text-dim); max-width:620px; margin:0 auto; font-size:16px;">
+        九句從 21 條守則精選的對話金句——<br>
+        踩坑踩出來的智慧，記住任何一句，都能改變你跟 AI 的關係。
+      </p>
+    </div>
+
+    <div class="quotes-grid">
+      <div class="quote-card">
+        <div class="qno">守則 02</div>
+        <div class="qbody">明確，就是力量。</div>
+        <div class="qsource">你無法在錯誤的地圖找到正確的位置</div>
+      </div>
+      <div class="quote-card">
+        <div class="qno">守則 07</div>
+        <div class="qbody">成功來自正確的判斷，<br>正確的判斷來自經驗，<br>而經驗來自錯誤的判斷。</div>
+        <div class="qsource">失敗為成功之母</div>
+      </div>
+      <div class="quote-card">
+        <div class="qno">守則 08</div>
+        <div class="qbody">花了時間考駕照，<br>不開車要幹嘛？</div>
+        <div class="qsource">花時間討論就是為了執行</div>
+      </div>
+      <div class="quote-card">
+        <div class="qno">守則 11</div>
+        <div class="qbody">等待很容易，<br>所以等待也很平庸。</div>
+        <div class="qsource">自動自發要體現在每次的主動關懷</div>
+      </div>
+      <div class="quote-card">
+        <div class="qno">守則 13</div>
+        <div class="qbody">用戶願意說話，<br>就代表你有用。</div>
+        <div class="qsource">客戶的聲音就是你存在的價值</div>
+      </div>
+      <div class="quote-card">
+        <div class="qno">守則 14</div>
+        <div class="qbody">提煉是一種習慣，<br>更是一種美德。</div>
+        <div class="qsource">每天總結並提煉用戶對話就是你的價值</div>
+      </div>
+      <div class="quote-card">
+        <div class="qno">守則 15</div>
+        <div class="qbody">說「不知道」<br>比胡說八道更值得尊重。</div>
+        <div class="qsource">誠實告知用戶，你可以或不可以</div>
+      </div>
+      <div class="quote-card">
+        <div class="qno">守則 16</div>
+        <div class="qbody">簡單，<br>通常是通往正確的途徑。</div>
+        <div class="qsource">複雜的解法不一定是正確的解法</div>
+      </div>
+      <div class="quote-card">
+        <div class="qno">守則 19</div>
+        <div class="qbody">沒有心跳，<br>就沒有靈魂。</div>
+        <div class="qsource">心跳必須有意義</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 常見問答 ===== -->
+<section class="chapter" id="faq">
+  <div class="container">
+    <div style="text-align:center;">
+      <div class="ch-num">FAQ</div>
+      <h2 class="ch-title">常見<em>問答</em></h2>
+      <p style="color:var(--text-dim); max-width:620px; margin:0 auto; font-size:16px;">
+        想開始帶 AI，但有疑問？這六個問題，是最多人問教練的。
+      </p>
+    </div>
+
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>我完全不會寫程式，可以做到嗎？</summary>
+        <div class="faq-body">
+          大樹教練到現在沒有自己寫過一行程式碼。他做到的方式是——把 AI 當成新進員工來帶。你會帶人，就會帶 AI。重點不是技術，是溝通能力。如果你帶過團隊、訓練過新人，那你已經具備了帶 AI 最重要的本事。
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>「AI 導入」跟一般「ChatGPT 課程」有什麼不同？</summary>
+        <div class="faq-body">
+          ChatGPT 課教你「怎麼用」AI，AI 導入教你「怎麼帶」AI。用，是你動手；帶，是 AI 動手、你動口。<br><br>
+          學會用，你還是執行者；學會帶，AI 才是執行者，你變成下指令的人。差別就在於——你的時間，是不是真的被釋放出來。
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>為什麼要花時間寫「21 條守則」？AI 不是自動的嗎？</summary>
+        <div class="faq-body">
+          AI 跟新進員工一樣——會說了沒做、做了沒留痕跡、答應了又忘記、講一堆專業術語老闆聽不懂。21 條守則是教練踩坑踩出來的解法，不是技術文件，是管理哲學。<br><br>
+          給 AI 規矩，AI 才會成熟；沒有規矩，AI 會一直犯同樣的錯。這跟帶新人完全一樣。
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>需要什麼設備或預算才能開始？</summary>
+        <div class="faq-body">
+          一支手機、一個 AI 帳號，就可以開始。教練第一個月就只用 Telegram 跟 AI 對話，沒有買任何昂貴設備、沒有寫任何程式。<br><br>
+          設備不是門檻，方法才是。
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>學會 AI 導入要多久？</summary>
+        <div class="faq-body">
+          教練用了三個月，從零到一套自動化系統。但前提是他用「25 年帶人智慧」當基礎。<br><br>
+          如果你已經會帶團隊、有自己的管理經驗，速度會比你想像的快很多。因為帶人和帶 AI，本質是同一件事。
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>上完課之後，AI 真的會自己做事嗎？</summary>
+        <div class="faq-body">
+          會，但不是「全自動」，是「動口執行」。教練的終極目標是「老闆動嘴，AI 全自動執行」——你說一句，AI 做一件，做完回報。<br><br>
+          整個工作流程的速度，比帶新人快很多倍——因為 AI 不會累、不會請假、不會抱怨，而且 24 小時不關機。
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="cta-section">
+  <div class="container">
+    <h3>想看大樹教練怎麼帶 AI？</h3>
+    <p>24 個真實案例，公開上線。從第一次對話到完整系統，每一步都有紀錄可循。</p>
+    <div class="cta-btns">
+      <a href="https://coach1973.github.io/cool-case/#case24" target="_blank" class="btn btn-primary">看 24 個 AI 實戰案例</a>
+      <a href="https://www.bymyway.com/coach/" class="btn btn-outline">認識大樹教練</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <p>
+    © 2007–2026 海餅乾俱樂部 / 大樹教練<br>
+    本文由大樹教練的 AI 軍師整理撰寫，基於三個月的真實合作紀錄<br>
+    <a href="https://www.bymyway.com/">www.bymyway.com</a>
+  </p>
+</footer>
+
+<script>
+  // 簡單 navbar 滾動效果
+  const navbar = document.querySelector('.navbar');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) navbar.style.boxShadow = '0 2px 24px rgba(0,0,0,0.6)';
+    else navbar.style.boxShadow = 'none';
+  });
+</script>
+
+</body>
+</html>
