@@ -808,33 +808,42 @@
       <h2 class="section-title center">大樹教練的<span class="gold">文章專欄</span></h2>
       <p class="section-desc center">精選大樹教練在「乾淨世界」平台發佈的教育觀點與人生智慧</p>
       <div class="articles-grid">
-        <a class="article-card" href="https://www.ganjingworld.com/article/1h2hvr7vnil5CRdZgIX5tk5zF1ht1c" target="_blank">
-          <span class="article-icon">🤝</span>
+        <div class="article-card" data-article="1">
+          <span class="article-tag">品格教育</span>
           <h3>誠信與人品</h3>
           <p>一位女高管把沒有密碼的信用卡借給流浪漢，結果會如何？這個真實故事告訴我們：人品，才是一個人最硬的底牌。</p>
-          <span class="article-tag">品格教育</span>
-        </a>
-        <a class="article-card" href="https://www.ganjingworld.com/article/1h4jau0kq6q2tot2iBenPs3Vz1g51c" target="_blank">
-          <span class="article-icon">🔥</span>
+          <span class="article-read">閱讀全文 →</span>
+        </div>
+        <div class="article-card" data-article="2">
+          <span class="article-tag">領導力</span>
           <h3>如何激勵別人</h3>
           <p>在「哈囉大樹教練」社群有同學問：如何激勵別人？教練的回應：激勵自己才是關鍵，因為這是唯一的可控元素。</p>
-          <span class="article-tag">領導力</span>
-        </a>
-        <a class="article-card" href="https://www.ganjingworld.com/article/1h12753c9gq77W8zRDUFbRQsb1ml1c" target="_blank">
-          <span class="article-icon">💬</span>
+          <span class="article-read">閱讀全文 →</span>
+        </div>
+        <div class="article-card" data-article="3">
+          <span class="article-tag">人生智慧</span>
           <h3>令人回味的經典問答</h3>
           <p>安全帶是為自己繫還是為交警繫？幾段直指人心的問答，讓你看完後不得不重新思考自己的生活態度。</p>
-          <span class="article-tag">人生智慧</span>
-        </a>
-        <a class="article-card" href="https://www.ganjingworld.com/article/1h1dorjefkd1TtjypM9fPFma71vi1c" target="_blank">
-          <span class="article-icon">🌱</span>
+          <span class="article-read">閱讀全文 →</span>
+        </div>
+        <div class="article-card" data-article="4">
+          <span class="article-tag">心靈成長</span>
           <h3>一語點醒，直指人心</h3>
           <p>一位求道的年輕人跋山涉水尋訪高僧，卻總覺得一無所獲。直到南山腳下遇見一位樵夫，才發現真理就在眼前。</p>
-          <span class="article-tag">心靈成長</span>
-        </a>
+          <span class="article-read">閱讀全文 →</span>
+        </div>
       </div>
       <div class="center" style="margin-top:2.5rem;">
         <a href="https://www.ganjingworld.com/@bymyway?tab=articles" target="_blank" class="btn-gold">前往乾淨世界閱讀更多 →</a>
+      </div>
+
+      <!-- 文章閱讀 Modal -->
+      <div class="article-modal" id="articleModal">
+        <div class="article-modal-content">
+          <button class="article-modal-close" id="articleModalClose">✕ 返回</button>
+          <div class="article-modal-body" id="articleModalBody"></div>
+          <div class="article-modal-source center" id="articleModalSource"></div>
+        </div>
       </div>
     </div>
   </section>
@@ -885,6 +894,13 @@
             </div>
             <div class="news-card">
               <span class="news-badge">線上</span>
+              <h3>7/4（五）線上座談會</h3>
+              <p>上午 10:00–11:50｜主持人：Peter Chen</p>
+              <p class="news-free">免費・限額 100 人</p>
+              <a href="https://line.me/R/ti/p/@pbz5529q" target="_blank" class="btn-outline">LINE 報名</a>
+            </div>
+            <div class="news-card">
+              <span class="news-badge">線上</span>
               <h3>7/5（六）線上座談會</h3>
               <p>晚上 8:00–9:30｜主持人：大樹教練</p>
               <p class="news-free">免費・限額 100 人</p>
@@ -915,7 +931,7 @@
         </div>
         <div class="news-nav-bottom">
           <button id="newsPrev" class="news-nav-btn">‹ 上一場</button>
-          <span id="newsCounter" class="news-counter">第 1 – 3 場，共 9 場</span>
+          <span id="newsCounter" class="news-counter">第 1 – 3 場，共 10 場</span>
           <button id="newsNext" class="news-nav-btn">下一場 ›</button>
         </div>
       </div>
@@ -958,10 +974,6 @@
         <details class="faq-item">
           <summary>大樹教練跟坊間的「成功學」講師有什麼不同？</summary>
           <p>教練常說：「我們不是為了做而做，也不是為了執行而執行。」大樹教練的核心信念是「使用創世主的道德標準——真誠、善良、忍讓」，所有教學都回歸到做人的根本。不販賣焦慮，不靠話術，而是用超過25年的真實經驗，幫助每一個生命值得更好的人。</p>
-        </details>
-        <details class="faq-item">
-          <summary>《結繩領導學》是什麼？</summary>
-          <p>《結繩領導學》是大樹教練的最新著作與課程系統，以「結繩」為隱喻，探討如何在團隊中建立真正的信任、承諾與領導力。目前提供線上座談會（免費）與實體工作坊（台南、台中、台北三地巡迴）兩種參與方式。</p>
         </details>
       </div>
     </div>
