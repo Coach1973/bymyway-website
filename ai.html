@@ -129,6 +129,30 @@
     transform: translateY(-2px);
   }
 
+  /* 三條橫線按鈕（漢堡選單）—— 預設電腦版隱藏 */
+  .nav-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    width: 40px; height: 40px;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+    flex-shrink: 0;
+  }
+  .nav-toggle span {
+    display: block;
+    height: 3px;
+    background: var(--gold);
+    border-radius: 2px;
+    transition: transform var(--ease), opacity var(--ease);
+  }
+  .navbar.nav-open .nav-toggle span:nth-child(1) { transform: translateY(10px) rotate(45deg); }
+  .navbar.nav-open .nav-toggle span:nth-child(2) { opacity: 0; }
+  .navbar.nav-open .nav-toggle span:nth-child(3) { transform: translateY(-10px) rotate(-45deg); }
+
   /* navbar 占位，避免 fixed 蓋住 Hero */
   body { padding-top: 78px; }
 
@@ -166,12 +190,42 @@
     body { padding-top: 70px; }
   }
   @media (max-width: 820px) {
-    /* 真手機 / 小平板：隱藏選單，留 logo + CTA */
-    .nav-inner { height: 62px; padding: 0 14px; }
+    /* 真手機 / 小平板：選單變成「點三條橫線才下拉」 */
+    .nav-inner { height: 62px; padding: 0 14px; position: relative; }
     .logo-main { font-size: 22px; letter-spacing: 2px; }
-    .nav-menu { display: none; }
-    .nav-cta { padding: 8px 16px; font-size: 13px; }
+    .nav-cta { padding: 8px 14px; font-size: 12px; }
     body { padding-top: 62px; }
+
+    /* 顯示三條橫線按鈕 */
+    .nav-toggle { display: flex; }
+
+    /* 選單預設收起，點按鈕後從頂部下拉 */
+    .nav-menu {
+      display: flex;
+      position: fixed;
+      top: 62px; left: 0; right: 0;
+      flex-direction: column;
+      background: var(--dark2);
+      border-top: 1px solid var(--border);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+      padding: 8px 0;
+      gap: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+      z-index: 999;
+    }
+    .navbar.nav-open .nav-menu {
+      max-height: calc(100vh - 62px);
+      overflow-y: auto;
+    }
+    .nav-menu .nav-item {
+      font-size: 16px;
+      padding: 14px 24px;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      letter-spacing: 1px;
+    }
+    .nav-menu .nav-item::after { display: none; }
   }
 
   /* ===== 核心思想（西洋棋比喻） ===== */
@@ -776,8 +830,18 @@
       <a href="https://www.ganjingworld.com/@bymyway" target="_blank" class="nav-item">乾淨世界</a>
     </div>
     <a href="https://lin.ee/o5pODV8" target="_blank" class="nav-cta">立即聯繫</a>
+    <button class="nav-toggle" aria-label="開啟選單" onclick="document.querySelector('.navbar').classList.toggle('nav-open')">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+<script>
+  document.addEventListener('click', function(e) {
+    if (e.target.classList && e.target.classList.contains('nav-item')) {
+      document.querySelector('.navbar').classList.remove('nav-open');
+    }
+  });
+</script>
 
 <!-- ===== HERO ===== -->
 <header class="hero" id="top">
